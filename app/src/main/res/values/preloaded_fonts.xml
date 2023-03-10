@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="preloaded_fonts" translatable="false">
+        <item>@font/arbutus_slab</item>
+        <item>@font/bevan</item>
+        <item>@font/boogaloo</item>
+        <item>@font/courgette</item>
+        <item>@font/crete_round</item>
+        <item>@font/damion</item>
+        <item>@font/faster_one</item>
+    </array>
+</resources>

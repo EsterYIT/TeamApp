@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/navLayout"
+    android:layout_width="match_parent"
+    android:layout_height="176dp"
+    android:background="@drawable/main_color_no_corner"
+    android:orientation="vertical"
+    android:paddingTop="16dp"
+    android:theme="@style/ThemeOverlay.AppCompat.Dark">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal">
+
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/profileImage"
+            android:layout_width="@dimen/_80sdp"
+            android:layout_height="@dimen/_80sdp"
+            android:src="@drawable/ic_persona"
+            app:civ_border_width="4dp"
+            app:civ_border_color="#E64646"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:layout_marginRight="@dimen/_5sdp"
+            android:layout_marginLeft="@dimen/_5sdp"
+            android:layout_centerInParent="true"/>
+<!--        <ImageView-->
+<!--            android:id="@+id/profileImage"-->
+<!--            android:layout_width="220dp"-->
+<!--            android:layout_height="90dp"-->
+
+<!--            android:layout_marginTop="25dp"-->
+<!--            android:layout_weight="1"-->
+<!--            android:src="@mipmap/ic_persona3" />-->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/nameBar"
+                android:layout_width="wrap_content"
+                android:layout_height="200dp"
+                android:layout_marginTop="40dp"
+                android:layout_weight="1"
+                android:text="alen kogen"
+                android:textColor="@color/white"
+                android:textSize="20dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/emailBar"
+                android:layout_width="wrap_content"
+                android:layout_height="250dp"
+                android:layout_weight="1"
+                android:text="alenkogen@gmail.com"
+                android:textColor="@color/white"
+                android:textSize="15dp" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

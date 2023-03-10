@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".carpool_info.carpoolTeamAct">
+
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        >
+
+        <TextView
+            android:id="@+id/toolbar_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text=" here is gonna be team name"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"
+            android:textStyle="bold|italic"
+            tools:layout_editor_absoluteX="166dp"
+            tools:layout_editor_absoluteY="18dp" />
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/carpoolTabLayout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar2"
+        android:background="@drawable/main_color_no_corner"
+        app:tabTextColor="@color/white"
+        >
+
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/carpool_overview_tab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="over view" />
+
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/carpool_car_tab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="car" />
+
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/carpool_chat_tab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="chat" />
+
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/carpool_map_tab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="map" />
+
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/carpool_options_tab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="options" />
+    </com.google.android.material.tabs.TabLayout>
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/carpoolViewPage"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/carpoolTabLayout"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/fragmentContainerView5"
+        android:name="com.example.teamapp.emptyFragments.emptyFragment"
+        android:layout_width="411dp"
+        android:layout_height="733dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

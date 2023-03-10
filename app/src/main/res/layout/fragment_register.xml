@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".registerFragment"
+    android:background="#ffffff">
+
+    <include layout="@layout/toolbar"
+        android:id="@+id/tool"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tool">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="match_parent"
+                android:layout_height="81dp"
+                android:gravity="center"
+                android:text="Fill in your details"
+                android:textAlignment="center"
+                android:textSize="32dp"
+                android:textStyle="bold"/>
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingRight="50dp"
+                android:paddingLeft="50dp"
+                android:hint="username">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/usernameInputReg"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="top"
+                    android:inputType="textMultiLine" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingRight="50dp"
+                android:paddingLeft="50dp"
+                android:layout_marginTop="10dp"
+                android:hint="email">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/emailInput"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="top"
+                    android:inputType="textMultiLine" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingRight="50dp"
+                android:paddingLeft="50dp"
+                android:layout_marginTop="10dp"
+                android:hint="phone number">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/phoneInput"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="top"
+                    android:inputType="textMultiLine" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingRight="50dp"
+                android:paddingLeft="50dp"
+                android:layout_marginTop="10dp"
+                android:hint="password">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/passInputReg"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="top"
+                    android:inputType="textPassword" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingRight="50dp"
+                android:paddingLeft="50dp"
+                android:layout_marginTop="10dp"
+                android:hint="confirm password">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/confirmPasInput"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="top"
+                    android:inputType="textPassword" />
+            </com.google.android.material.textfield.TextInputLayout>
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/singupBtn"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/main_color_with_corner"
+                android:minHeight="48dp"
+                android:text="signup"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                tools:ignore="TouchTargetSizeCheck" />
+        </LinearLayout>
+    </ScrollView>
+
+</RelativeLayout>

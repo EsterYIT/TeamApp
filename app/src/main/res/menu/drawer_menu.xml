@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+    <item android:title="options">
+        <menu>
+    <group android:checkableBehavior="single">
+        <item android:id="@+id/nav_home"
+            android:icon="@drawable/ic_homie"
+            android:title="Home"/>
+
+        <item android:id="@+id/nav_profile_edit"
+            android:icon="@drawable/ic_edit_profile"
+            android:title="Edit Profile"/>
+
+        <item android:id="@+id/nav_search_friends"
+            android:icon="@drawable/ic_search_friends"
+            android:title="Add To Contacts"/>
+
+
+
+        <item android:id="@+id/nav_support"
+            android:icon="@drawable/ic_support"
+            android:title="Support"/>
+
+
+    </group>
+        </menu>
+    </item>
+
+    <item android:title="Extras">
+
+        <menu>
+            <item android:id="@+id/nav_share"
+                android:icon="@drawable/ic_share"
+                android:title="Share Your User Info"/>
+
+            <item android:id="@+id/nav_logout"
+                android:icon="@drawable/ic_logout"
+                android:title="Log Out"/>
+        </menu>
+    </item>
+
+
+</menu>
+

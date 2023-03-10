@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".overview.OverViewFragment"
+    android:id="@+id/overCoo"
+    android:background="#ffffff"
+    >
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+    <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+<LinearLayout
+    android:id="@+id/linearLayout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/changeSubject"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_more_vert_24"
+            android:paddingTop="5dp"
+            />
+
+        <ImageView
+            android:id="@+id/addFriend"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_marginStart="320dp"
+            android:src="@drawable/ic_add_person_24"
+            android:paddingTop="5dp"
+            android:visibility="gone"
+            />
+
+    </LinearLayout>
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/teamImage"
+        android:layout_width="match_parent"
+        android:layout_height="140dp"
+        android:layout_marginTop="20dp"
+        android:layout_gravity="center"
+        />
+    <TextView
+        android:id="@+id/teamName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:textAlignment="center"
+        android:layout_marginTop="10dp"/>
+
+    <TextView
+        android:id="@+id/TeamMembersAndType"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="16dp"
+        android:layout_marginBottom="10dp"
+        android:textAlignment="center"/>
+
+</LinearLayout>
+
+    <View
+        android:id="@+id/divider2"
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:background="?android:attr/listDivider"
+        android:layout_below="@+id/linearLayout"/>
+
+    <LinearLayout
+        android:id="@+id/horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/divider2"
+        android:padding="5dp"
+        android:orientation="horizontal">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="10dp"
+            android:src="@drawable/ic_notifications_24" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:padding="2dp"
+            android:gravity="center"
+            android:text="mute notifications" />
+
+        <Switch
+            android:id="@+id/switch1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            tools:ignore="TouchTargetSizeCheck" />
+
+    </LinearLayout>
+
+
+    <View
+        android:id="@+id/divider3"
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:layout_below="@+id/horizontal"
+        android:background="?android:attr/listDivider" />
+
+    <LinearLayout
+        android:id="@+id/linearHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/divider3"
+        android:orientation="horizontal"
+        android:padding="5dp">
+
+        <TextView
+            android:id="@+id/teamMembersAboveRecycler"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_weight="1"
+            android:textSize="16dp" />
+
+        <ImageView
+            android:id="@+id/searchFriend"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_search_24" />
+
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/teamMembersRecycler"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/linearHorizontal"
+        android:padding="10dp" />
+
+    <View
+        android:id="@+id/divider4"
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:layout_below="@+id/teamMembersRecycler"
+        android:background="?android:attr/listDivider" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="5dp"
+        android:layout_below="@+id/divider4"
+        >
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/logout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_logout"
+            android:layout_marginStart="10dp"
+            android:layout_gravity="center"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="leaving the group"
+            android:gravity="center"
+            android:layout_marginStart="10dp"/>
+
+    </LinearLayout>
+
+</LinearLayout>
+</androidx.core.widget.NestedScrollView>
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/fragmentContainerView8"
+        android:name="com.example.teamapp.emptyFragments.emptyFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

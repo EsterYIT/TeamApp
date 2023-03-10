@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".OptionsFragment"
+    android:background="#ffffff">
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:layout_marginTop="10dp"
+
+    android:padding="10dp"
+    android:background="#eeeeee">
+
+    <TextView
+        android:id="@+id/settings"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="change Settings"
+        android:textSize="20dp"
+        android:layout_marginStart="5dp"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="group manager only"
+        android:layout_toEndOf="@id/settings"
+        android:layout_weight="1"
+        android:textSize="14dp"
+        />
+</LinearLayout>
+
+
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/fragmentContainerView7"
+        android:name="com.example.teamapp.emptyFragments.emptyFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+
+</RelativeLayout>

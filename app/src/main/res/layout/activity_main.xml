@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:id="@+id/constain"
+    tools:context=".MainActivity"
+    >
+
+        // these views will not come up.
+
+    <ScrollView
+        android:id="@+id/scroller"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+    >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <View
+                android:id="@+id/teamIcon"
+                android:layout_width="@dimen/_200sdp"
+                android:layout_height="@dimen/_200sdp"
+                android:layout_gravity="center"
+                android:layout_marginTop="30dp"
+                android:background="@drawable/lets_teamapp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:hint="Enter your email"
+                android:paddingLeft="50dp"
+                android:paddingRight="50dp"
+              >
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/emailInput"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:drawableStart="@drawable/username_24"
+                    android:inputType="textMultiLine"
+                    />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:hint="Enter your password"
+                android:paddingLeft="50dp"
+                android:paddingRight="50dp"
+                app:passwordToggleEnabled="true"
+                android:layout_marginTop="10dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/passwordInput"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:drawableStart="@drawable/password_24"
+                    android:inputType="textPassword" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:orientation="horizontal"
+                android:gravity="center">
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/loginBtn"
+                    android:layout_width="170dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/main_color_with_corner"
+                    android:text="Login"
+                    android:textColor="@color/white"
+                    android:textSize="20sp"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginEnd="20dp"
+                    tools:ignore="DuplicateClickableBoundsCheck" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/registerBtn"
+                    android:layout_width="170dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/main_color_with_corner"
+                    android:minHeight="48dp"
+                    android:text="Register"
+                    android:textColor="@color/white"
+                    android:textSize="20sp"
+                    android:layout_marginEnd="30dp"
+                    tools:ignore="TouchTargetSizeCheck" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/fragmentContainerView"
+        android:name="com.example.teamapp.emptyFragments.emptyFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+</RelativeLayout>

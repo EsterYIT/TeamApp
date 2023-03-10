@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".chat.HomeFragmentChat">
+
+     TODO: Update blank fragment layout
+<!--    <TextView-->
+<!--        android:id="@+id/title"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:text="Chat"-->
+<!--        android:textAlignment="center"-->
+<!--        android:textSize="34sp" />-->
+
+<androidx.recyclerview.widget.RecyclerView
+    android:id="@+id/conversionRecyclerView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clipToPadding="false"
+    android:orientation="vertical"
+    android:overScrollMode="never"
+    android:padding="@dimen/_20sdp"
+    android:visibility="gone"
+    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+    />
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="@dimen/_25sdp"
+        android:layout_height="@dimen/_25sdp"
+        android:layout_gravity="center"/>
+</FrameLayout>
