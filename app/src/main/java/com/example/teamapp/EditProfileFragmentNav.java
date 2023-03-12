@@ -139,7 +139,7 @@ public class EditProfileFragmentNav extends Fragment implements View.OnClickList
                                 checkNewDetailsValidation(username.getText().toString(),phoneNumber.getText().toString());
                                 if (!(value.getString("username")).equals(username.getText().toString())) {
                                     documentRef.update("username",username.getText().toString());
-                                    Toast.makeText(getActivity(), "Username has been update", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(getActivity(), "Username has been update", Toast.LENGTH_LONG).show();
                                 }
                                 if (!(value.getString("phoneNumber")).equals(phoneNumber.getText().toString())) {
                                     documentRef.update("phoneNumber",phoneNumber.getText().toString());
