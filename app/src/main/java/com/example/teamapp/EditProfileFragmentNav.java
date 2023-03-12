@@ -1,6 +1,7 @@
 package com.example.teamapp;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.app.ActionBar;
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -92,6 +93,7 @@ public class EditProfileFragmentNav extends Fragment implements View.OnClickList
     PreferenceManager preferenceManager;
     Dialog dialog;
 
+    @SuppressLint("MissingInflatedId")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -137,6 +139,7 @@ public class EditProfileFragmentNav extends Fragment implements View.OnClickList
                                 checkNewDetailsValidation(username.getText().toString(),phoneNumber.getText().toString());
                                 if (!(value.getString("username")).equals(username.getText().toString())) {
                                     documentRef.update("username",username.getText().toString());
+                                    Toast.makeText(getActivity(), "Username has been update", Toast.LENGTH_SHORT).show();
                                 }
                                 if (!(value.getString("phoneNumber")).equals(phoneNumber.getText().toString())) {
                                     documentRef.update("phoneNumber",phoneNumber.getText().toString());

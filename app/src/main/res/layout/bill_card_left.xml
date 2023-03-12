@@ -38,13 +38,13 @@
             android:id="@+id/userBill"
             android:layout_width="70dp"
             android:layout_height="50dp"
-            android:layout_marginTop="25dp"
             android:layout_marginStart="20dp"
-            android:inputType="numberDecimal"
-            android:gravity="center"
+            android:layout_marginTop="25dp"
             android:background="@drawable/bill_circle"
+            android:gravity="center"
+            android:inputType="numberDecimal"
             android:textColor="@color/white"
-            tools:ignore="TouchTargetSizeCheck" />
+            tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
 
         <ImageView
             android:id="@+id/lock"
