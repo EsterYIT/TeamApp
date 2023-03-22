@@ -7,7 +7,7 @@ This application is used as an infrastructure for managing interest groups, whic
 At the moment the infrastructure is focused on a template for a hangout group only, with the ability to expand to templates for additional groups.
 
 ### Application Pages
-
+![app pages](https://user-images.githubusercontent.com/106423697/226905851-a90e5a28-d8ea-4fba-a916-4ddddf535987.png)
 
 
 ### Firebase DB
