@@ -59,7 +59,6 @@ public class MainActivity extends AppCompatActivity {
     Button login, register;
     EditText email,password;
     ScrollView scrollView2;
-    ConstraintLayout containt;
     PreferenceManager preferenceManager;
     DatabaseReference myRef;
 
@@ -76,32 +75,7 @@ public class MainActivity extends AppCompatActivity {
         preferenceManager= new PreferenceManager(getApplicationContext());
         scrollView2=findViewById(R.id.scroller);
 
-       // this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
-     //   containt=findViewById(R.id.constain);
-   //     ViewGroup.LayoutParams params = containt.getLayoutParams();
         myRef = database.getInstance().getReference("AuthUsers");
-//        scrollView2.fullScroll(scrollView2.FOCUS_DOWN);
-//
-//        ViewTreeObserver observer = scrollView2.getViewTreeObserver();
-//        observer.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
-//            @Override
-//            public void onGlobalLayout() {
-//                int viewHeight = scrollView2.getMeasuredHeight();
-//                int contentHeight = scrollView2.getChildAt(0).getHeight();
-//                if(viewHeight - contentHeight < 0) {
-//                    scrollView2.scrollTo(0, scrollView2.getBottom());
-//                    //scrollView2.fullScroll(scrollView2.FOCUS_DOWN);
-//                    ViewGroup.MarginLayoutParams p = (ViewGroup.MarginLayoutParams) containt.getLayoutParams();
-//                    p.setMargins(0, 0, 0, 0);
-//                    containt.setLayoutParams(p);
-//                }else{
-//                    ViewGroup.MarginLayoutParams p = (ViewGroup.MarginLayoutParams) containt.getLayoutParams();
-//                    p.setMargins(0, 0, 0, 450);
-//                    containt.setLayoutParams(p);
-//                }
-//            }
-//        });
-
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -119,14 +93,14 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private void loginUser(String email, String password) {
+    private void loginUser(String email1, String password1) {
         Bitmap bm = BitmapFactory.decodeResource(getResources(),R.mipmap.ic_profile_place_holder);
         ByteArrayOutputStream byteArray = new ByteArrayOutputStream();
         bm.compress(Bitmap.CompressFormat.JPEG, 100, byteArray); // bm is the bitmap object
         byte[] byteArrayImage = byteArray.toByteArray();
         String encodedImage = Base64.encodeToString(byteArrayImage, Base64.DEFAULT);
         preferenceManager.putString("defaultPicture",encodedImage);
-        auth.signInWithEmailAndPassword(email,password).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
+        auth.signInWithEmailAndPassword(email1,password1).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
             @Override
             public void onSuccess(AuthResult authResult) {
                     Toast.makeText(MainActivity.this, "you logged in successfully ", Toast.LENGTH_SHORT).show();
@@ -146,7 +120,11 @@ public class MainActivity extends AppCompatActivity {
                     });
                     finish();
                 }
-
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(MainActivity.this, "Wrong Details", Toast.LENGTH_SHORT).show();
+            }
         });
     }
 }

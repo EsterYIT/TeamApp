@@ -169,35 +169,15 @@ public class ContactListFragment extends Fragment implements AddContact {
                 }
             }
         });
-
-//        fStore.collection("users").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-//            @Override
-//            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-//
-//                if(task.isSuccessful() && task.getResult() !=null) {
-//                    for (QueryDocumentSnapshot queryDocumentSnapshot : task.getResult()) {
-//                        if(currentUserId.equals(queryDocumentSnapshot.getId()))
-//                            continue;
-//                        ContactModel model = new ContactModel();
-//                        model.setName1(queryDocumentSnapshot.getString("username"));
-//                        model.setNumber(queryDocumentSnapshot.getString("phoneNumber"));
-//                        model.setImage(queryDocumentSnapshot.getString("userImage"));
-//                        arrayList.add(model);
-//                    }
-//                }
-//            }
-//        });
     }
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
- //       grantResults.length > 0
         if (requestCode == 100 && grantResults[0]
                 == PackageManager.PERMISSION_GRANTED){
             addUserToContacts();
         }else{
-            //   Toast.makeText(this, "Permission Denied", Toast.LENGTH_SHORT).show();
             checkPermission();
 
         }

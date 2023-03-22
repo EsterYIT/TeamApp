@@ -68,8 +68,6 @@ public class TeamMembersAdapter extends RecyclerView.Adapter<TeamMembersAdapter.
             userName = itemView.findViewById(R.id.userMember);
             userNumber = itemView.findViewById(R.id.userMemberPhone);
 
-         //   teamMemberCard = itemView.findViewById(R.id.teamMembersCard);
-
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {

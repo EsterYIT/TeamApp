@@ -134,62 +134,55 @@ public class Hangout_Settings_Fragment extends Fragment {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent();
-                intent.putExtra("gallery",album);
+                intent.putExtra("gallery", album);
 
-                FirebaseFirestore fireStore=FirebaseFirestore.getInstance();
-                DocumentReference currentUserRef=fireStore.collection("users").document(FirebaseAuth.getInstance().getUid());
-                List list=new LinkedList();
-                String encodedImage=defaultImage();
+                FirebaseFirestore fireStore = FirebaseFirestore.getInstance();
+                DocumentReference currentUserRef = fireStore.collection("users").document(FirebaseAuth.getInstance().getUid());
+                List list = new LinkedList();
+                String encodedImage = defaultImage();
                 list.add(users);
                 Map<String, String> map = new HashMap<String, String>();
                 Map<String, Boolean> tabs = new HashMap<String, Boolean>();
-                tabs.put("albumEnabled",album);
-                tabs.put("menuEnabled",menu);
-                tabs.put("chatEnabled",chat);
+                tabs.put("albumEnabled", album);
+                tabs.put("menuEnabled", menu);
+                tabs.put("chatEnabled", chat);
 
-                map.put("imageID",encodedImage);
+                map.put("imageID", encodedImage);
                 Map<String, Object> hangoutTeam = new HashMap<String, Object>();
                 SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
                 Date currentTime = new Date();
                 hangoutTeam.put("createdAt", formatter.format(currentTime));
                 hangoutTeam.put("lastEdit", formatter.format(currentTime));
-                hangoutTeam.put("teamType","hangoutTeam");
-                hangoutTeam.put("teamName",teamName.getText().toString());
-                hangoutTeam.put("meetingPlace",meetingPlace.getText().toString());
-                hangoutTeam.put("date",date.getText().toString());
-                hangoutTeam.put("time",hour.getText().toString());
-                hangoutTeam.put("tabs",tabs);
-                hangoutTeam.put("teamMembers",list);
-                hangoutTeam.put("teamImage",map);
+                hangoutTeam.put("teamType", "hangoutTeam");
+                hangoutTeam.put("teamName", teamName.getText().toString());
+                hangoutTeam.put("meetingPlace", meetingPlace.getText().toString());
+                hangoutTeam.put("date", date.getText().toString());
+                hangoutTeam.put("time", hour.getText().toString());
+                hangoutTeam.put("tabs", tabs);
+                hangoutTeam.put("teamMembers", list);
+                hangoutTeam.put("teamImage", map);
 
 
-                fireStore.collection("Teams").add(hangoutTeam).addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
-                    @Override
-                    public void onComplete(@NonNull Task<DocumentReference> task) {
-//                        FirebaseFirestore fireStore=FirebaseFirestore.getInstance();
-//                        CollectionReference currentUserRef=fireStore.collection("users").document(FirebaseAuth.getInstance().getUid()).collection("Teams");
-//                        Map<String, Object> updateMap = new HashMap();
-//                        updateMap.put("task.getResult().getId()", task.getResult().getId());
-//                        currentUserRef.add(updateMap);
-//                        FirebaseFirestore fireStore=FirebaseFirestore.getInstance();
-//                        CollectionReference currentUserRef=fireStore.collection("users").document(FirebaseAuth.getInstance().getUid());
-//                        DocumentReference FirestoreRef = fireStore.collection("users").document(FirebaseAuth.getInstance().getUid());
-//
-//                        Map<String, Object> map = new HashMap<>();
-//                        map.put("userList", FieldValue.arrayUnion("user_id"));
-//                        FirestoreRef.set(docRef, map, SetOptions.merge());
-                        FirebaseFirestore fireStore=FirebaseFirestore.getInstance();
+                if (date.getText().toString().equals("")) {
+                    date.setError("Date must not be empty");
+                } else {
+                    fireStore.collection("Teams").add(hangoutTeam).addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
+                        @Override
+                        public void onComplete(@NonNull Task<DocumentReference> task) {
 
-                        DocumentReference docRef = fireStore.collection("users").document(FirebaseAuth.getInstance().getUid());
-                        docRef.update("teams", FieldValue.arrayUnion(task.getResult().getId()));
-                        Intent intent = new Intent(getActivity(),HomePage.class);
-                        startActivity(intent);
+                            FirebaseFirestore fireStore = FirebaseFirestore.getInstance();
+                            DocumentReference docRef = fireStore.collection("users").document(FirebaseAuth.getInstance().getUid());
+                            docRef.update("teams", FieldValue.arrayUnion(task.getResult().getId()));
+                            Intent intent = new Intent(getActivity(), HomePage.class);
+                            startActivity(intent);
 
-                    }
-                });
-                Toast.makeText(getContext(), "New team created", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                    Toast.makeText(getContext(), "New team created", Toast.LENGTH_SHORT).show();
+                }
             }
         });
+
 
         back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -256,16 +249,7 @@ public class Hangout_Settings_Fragment extends Fragment {
         DocumentReference Reference = db.collection("users").document(FirebaseAuth.getInstance().getUid());
 
         Reference.get().addOnCompleteListener(
-//                new OnCompleteListener<QuerySnapshot>() {
-//            @Override
-//            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-//                if (task.isSuccessful()) {
-//                    for (QueryDocumentSnapshot document : task.getResult()) {
-//                        users.put("name",task);
-//                    }
-//                }
-//            }
-//        });
+
                 new OnCompleteListener<DocumentSnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<DocumentSnapshot> task) {

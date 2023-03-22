@@ -108,7 +108,6 @@ public class ChangeEmailFragment extends Fragment {
                                 verify.setText("You are authenticated. You can update your email now.");
                                 editNewEmail.setEnabled(true);
                                 updateBtn.setEnabled(true);
-                               // updateBtn.setTextColor(1);
                                 editPass.setEnabled(false);
                                 authBtn.setEnabled(false);
 

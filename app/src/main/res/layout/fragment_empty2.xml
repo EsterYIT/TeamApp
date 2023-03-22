@@ -13,20 +13,20 @@
 
 
     <ImageView
-        android:layout_width="250dp"
-        android:layout_height="200dp"
-        android:layout_marginTop="30dp"
+        android:layout_width="300dp"
+        android:layout_height="250dp"
+        android:layout_marginTop="50dp"
         android:layout_gravity="center"
         android:background="@drawable/party"
         />
 
-    <ImageView
-        android:layout_marginTop="40dp"
-        android:layout_width="250dp"
-        android:layout_gravity="center"
-        android:layout_height="200dp"
-        android:background="@drawable/car"
-      />
+<!--    <ImageView-->
+<!--        android:layout_marginTop="40dp"-->
+<!--        android:layout_width="250dp"-->
+<!--        android:layout_gravity="center"-->
+<!--        android:layout_height="200dp"-->
+<!--        android:background="@drawable/car"-->
+<!--      />-->
 
 </LinearLayout>
 

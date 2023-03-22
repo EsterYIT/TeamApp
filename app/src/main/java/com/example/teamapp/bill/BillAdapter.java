@@ -55,13 +55,13 @@ public class BillAdapter extends RecyclerView.Adapter<BillAdapter.ViewHolder>{
     @Override
     public BillAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view;
-  //      if(viewType == LEFT_CARD) {
+        if(viewType == LEFT_CARD) {
             view = LayoutInflater.from(parent.getContext())
                     .inflate(R.layout.bill_card_right, parent, false);
-//        }else{
-//            view = LayoutInflater.from(parent.getContext())
-//                    .inflate(R.layout.bill_card_right, parent, false);
-//        }
+        }else{
+            view = LayoutInflater.from(parent.getContext())
+                    .inflate(R.layout.bill_card_right, parent, false);
+        }
         return new ViewHolder(view);
     }
 
@@ -142,15 +142,15 @@ public class BillAdapter extends RecyclerView.Adapter<BillAdapter.ViewHolder>{
 
     }
 
-//    public int getItemViewType(int position){
-//        if(flag == 0) {
-//            flag = 1;
-//            return LEFT_CARD;
-//        }else{
-//            flag = 0;
-//            return RIGHT_CARD;
-//        }
-//    }
+    public int getItemViewType(int position){
+        if(flag == 0) {
+            flag = 1;
+            return LEFT_CARD;
+        }else{
+            flag = 0;
+            return RIGHT_CARD;
+        }
+    }
 
     private Bitmap getBitmapFromEncodedString(String encodedImage){
         if(encodedImage!=null){

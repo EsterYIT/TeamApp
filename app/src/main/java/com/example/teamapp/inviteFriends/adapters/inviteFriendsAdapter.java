@@ -60,15 +60,6 @@ public class inviteFriendsAdapter extends RecyclerView.Adapter<inviteFriendsAdap
             holder.invite.setBackgroundColor(R.color.design_default_color_on_primary);
             holder.invite.setClickable(false);
         }
-
-//        holder.invite.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                if(position != RecyclerView.NO_POSITION) {
-//                    inviteInter.inviteFriend(position, arrayList.get(position).getId(), holder.invite);
-//                }
-//            }
-//        });
     }
 
     @Override

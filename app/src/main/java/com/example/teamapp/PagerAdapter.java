@@ -30,12 +30,7 @@ public class PagerAdapter extends FragmentPagerAdapter {
         }
         return fragment;
     }
-//    public void removeTabPage(int position) {
-//        if (!tabItems.isEmpty() && position<tabItems.size()) {
-//            tabItems.remove(position);
-//            notifyDataSetChanged();
-//        }
-//    }
+
     @Override
     public int getCount() {
         return numOfTabs;

@@ -35,8 +35,6 @@ public class GroupMessagesAdapter extends RecyclerView.Adapter<RecyclerView.View
         this.messages = messages;
         this.messagesDB = messagesDB;
         this.senderId=senderId;
-        System.out.println("messagesize "+messages.size());
-
     }
 
     @NonNull
@@ -52,7 +50,7 @@ public class GroupMessagesAdapter extends RecyclerView.Adapter<RecyclerView.View
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-        System.out.println("bananasNANAS");
+
         if (getItemViewType(position) == VIEW_TYPE_SENT) {
             ((GroupMessagesAdapter.SentMessageViewHolder) holder).setData(messages.get(position));
         } else {
@@ -74,16 +72,6 @@ public class GroupMessagesAdapter extends RecyclerView.Adapter<RecyclerView.View
             return VIEW_TYPE_RECEIVED;
         }
     }
-
-//    public class GroupMessagesAdapterViewHolder  extends RecyclerView.ViewHolder{
-//
-//        TextView tvTitle;
-//
-//        public GroupMessagesAdapterViewHolder(@NonNull View itemView) {
-//            super(itemView);
-//            tvTitle=(TextView) itemView.findViewById(R.id.textMessage);
-//        }
-//    }
 
     static class SentMessageViewHolder extends RecyclerView.ViewHolder{
         private final ItemContainerSentMessageBinding binding;

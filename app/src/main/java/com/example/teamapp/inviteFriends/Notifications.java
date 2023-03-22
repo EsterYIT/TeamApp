@@ -127,8 +127,6 @@ public class Notifications implements InvitationAnswer {
 
                 if(list != null)
                     docRef.update("invitation",list);
-
-                 //   docRef.update("invitation", FieldValue.delete()); // delete all field
             }
         });
 

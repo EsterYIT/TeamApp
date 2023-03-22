@@ -45,13 +45,11 @@ public class ChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-     //   if(chatMessages.get(position).dateObject.after(new Date(2022,9,6))) {
             if (getItemViewType(position) == VIEW_TYPE_SENT) {
                 ((SentMessageViewHolder) holder).setData(chatMessages.get(position));
             } else {
                 ((ReceivedMessageViewHolder) holder).setData(chatMessages.get(position), receiverProfileImage);
             }
-    //    }
     }
 
     @Override

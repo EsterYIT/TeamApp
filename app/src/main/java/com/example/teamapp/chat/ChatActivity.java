@@ -215,11 +215,7 @@ public class ChatActivity extends BaseActivity implements PopupMenu.OnMenuItemCl
 
     private void listenMessages(){
         Date date = new Date(122,8,7,11,27);
-        System.out.println("date ======= " + date);
         long time = date.getTime();
-        System.out.println("date ======= " + date.getTime());
-
-        System.out.println("time=======" + time);
         database.collection("chat")
                 .whereEqualTo("senderId",id)
                 .whereEqualTo("receiverId",receiverUser.getId())
@@ -231,7 +227,6 @@ public class ChatActivity extends BaseActivity implements PopupMenu.OnMenuItemCl
     }
 
 
-//firestore shit need to replace.
     private final EventListener<QuerySnapshot> eventListener=(value, error)-> {
         if (error != null) {
             return;
@@ -239,8 +234,6 @@ public class ChatActivity extends BaseActivity implements PopupMenu.OnMenuItemCl
         if (value != null) {
             int count = chatMessages.size();
             time = 0;
-            System.out.println("chkalaka "+conversions);
-
             if(conversions != null) {
                 DocumentReference doc = database.collection("conversions").document(conversions);
                 doc.addSnapshotListener(new EventListener<DocumentSnapshot>() {
@@ -374,37 +367,27 @@ public class ChatActivity extends BaseActivity implements PopupMenu.OnMenuItemCl
     }
 
     private synchronized void conversionIdGetter(){
-        System.out.println("receiver id = " + receiverUser.getId());
-        System.out.println("id = " + id);
-
         database.collection("conversions").whereEqualTo("senderId",id).whereEqualTo("receiverId",receiverUser.getId()).get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
             @Override
             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                 if(queryDocumentSnapshots.getDocuments().size()>0) {
-                    System.out.println("======" + queryDocumentSnapshots.getDocuments().get(0).getId());
                     conversions = queryDocumentSnapshots.getDocuments().get(0).getId().toString();
-                    System.out.println("======/" + conversions);
                 }
             }
         });
         if(conversions!=null) {
             return;
         }
-        System.out.println("converrrrrrrrr = " + conversions);
-
         database.collection("conversions").whereEqualTo("senderId",receiverUser.getId()).whereEqualTo("receiverId",id).get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
             @Override
             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                 if(queryDocumentSnapshots.getDocuments().size()>0) {
-                    System.out.println("======" + queryDocumentSnapshots.getDocuments().get(0).getId());
                     conversions = queryDocumentSnapshots.getDocuments().get(0).getId().toString();
-                    System.out.println("======/" + conversions);
                 }
             }
         });
         if(conversions!=null) {
             return;
         }
-        System.out.println("converrrrrrrrr = " + conversions);
     }
 }

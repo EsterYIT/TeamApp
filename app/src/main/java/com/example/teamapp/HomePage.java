@@ -116,10 +116,6 @@ public class HomePage extends AppCompatActivity implements NavigationView.OnNavi
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainerViewAll,
                         new SupportFragmentNav()).commit();
                 break;
-//            case R.id.nav_settings:
-//                getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainerViewAll,
-//                        new SettingFragmentNav()).commit();
-//                break;
             case R.id.nav_share:
                 Toast.makeText(this, "here gonna be sharing option", Toast.LENGTH_SHORT).show();
                 break;
@@ -152,11 +148,9 @@ public class HomePage extends AppCompatActivity implements NavigationView.OnNavi
                     preferenceManager.putString("userImage", value.getString("userImage"));
                     name.setText(value.getString("username"));
                     email.setText(value.getString("email"));
-//                    System.out.println("imagone");
                     Bitmap bm = getBitmapFromEncodedString(value.getString("userImage"));
                     profileImage.setImageBitmap(bm);
                     if (!firebaseUser.isEmailVerified()) {
-                        //   getSupportActionBar().hide();
                         HomePage.this.getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainerViewAll,
                                 new EmailVerifyFragment()).commit();
                     }
@@ -218,7 +212,6 @@ public class HomePage extends AppCompatActivity implements NavigationView.OnNavi
 
     private void signOut() {
         FirebaseFirestore database = FirebaseFirestore.getInstance();
-        System.out.println();
         DocumentReference documentReference =
                 database.collection("users").document(FirebaseAuth.getInstance().getUid());
         HashMap<String, Object> updates = new HashMap<>();

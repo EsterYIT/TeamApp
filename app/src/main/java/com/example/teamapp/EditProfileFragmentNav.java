@@ -85,7 +85,6 @@ public class EditProfileFragmentNav extends Fragment implements View.OnClickList
     DocumentReference documentRef;
     DatabaseReference myRef;
     ImageView userPen, emailPen, phonePen, passwordPen,changeImg, profileImg;
-    ImageView cameraImage,galleryImage;
     EditText username, email, password, phoneNumber;
     Button updateBtn;
     Toolbar toolbar;
@@ -155,7 +154,6 @@ public class EditProfileFragmentNav extends Fragment implements View.OnClickList
             public void onClick(View view) {
                 cameraOrGallery();
             }
-
         });
         return v;
     }

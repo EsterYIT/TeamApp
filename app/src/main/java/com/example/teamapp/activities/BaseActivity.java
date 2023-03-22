@@ -6,20 +6,16 @@ import android.view.Menu;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatImageView;
-
-import com.example.teamapp.R;
 import com.example.teamapp.utils.PreferenceManager;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-import java.util.ArrayList;
 
 public class BaseActivity extends AppCompatActivity {
 
     private DocumentReference documentReference;
     private FirebaseAuth auth;
-    AppCompatImageView info;
 
 
     @Override

@@ -76,6 +76,7 @@ public class billFragment extends Fragment implements BillOnClick{
     double totalBill;
     String totalPayedStr,totalPriceStr,billa;
     TableLayout tab;
+    boolean chosePic = false;
 
 
     @Override
@@ -256,6 +257,7 @@ public class billFragment extends Fragment implements BillOnClick{
                 Bitmap bitmap= MediaStore.Images.Media.getBitmap(getContext().getContentResolver(),imgURI);
                 String encodedImage=encodeImage(bitmap);
                 uploadImage(encodedImage);
+                chosePic = true;
                 Toast.makeText(getContext(), "image was uploaded successfully", Toast.LENGTH_SHORT).show();
             } catch (IOException e) {
                 Toast.makeText(getContext(), "Couldn't upload profile image.", Toast.LENGTH_SHORT).show();
@@ -278,36 +280,27 @@ public class billFragment extends Fragment implements BillOnClick{
                     DocumentSnapshot document = task.getResult();
                      bill1 = (Map<String, Object>)document.get("bill");
                    if (bill1 != null) {
-//                           if(!bill1.containsKey("totalPayed")){
-//                               billParam.put("totalPayed", 0);
-//                               billStore.put("bill", billParam);
-//                               fStore.collection("Teams").document(teamID).update(billStore);
-//                               totalPayed.setText(bill1.get("totalPayed").toString());
-//                               System.out.println("ttttttttttttttttttttttttttttttttt");
-//                           }
+                       if(chosePic){
+                           Bitmap bm = getBitmapFromEncodedString(bill1.get("billImage").toString());
+                           billImg.setImageBitmap(bm);
+                           billParam.put("billImage",bill1.get("billImage").toString());
+                       }
                            totalPrice.setText(bill1.get("totalPrice").toString());
                            totalPayed.setText(bill1.get("totalPayed").toString());
                            bill.setText(bill1.get("billPrice").toString());
                            tip.setText(bill1.get("tip").toString());
-                           Bitmap bm = getBitmapFromEncodedString(bill1.get("billImage").toString());
-                           billImg.setImageBitmap(bm);
                            totalPayedStr = totalPayed.getText().toString();
                            totalPriceStr = totalPrice.getText().toString();
                            totalBill = Double.parseDouble(totalPayedStr);
                            billParam.put("totalPrice",bill1.get("totalPrice"));
                            billParam.put("billPrice",bill1.get("billPrice"));
                            billParam.put("tip",bill1.get("tip"));
-                           billParam.put("billImage",bill1.get("billImage").toString());
                            billParam.put("totalPayed",bill1.get("totalPayed"));
 
                         if(totalBill >= Double.parseDouble(totalPriceStr) && totalBill != 0)
                             bit.setVisibility(View.VISIBLE);
                         else
                             bit.setVisibility(View.GONE);
-
-                        System.out.println("totallll = " + Double.parseDouble(totalPriceStr));
-                        System.out.println("totallllbilll = " + totalBill);
-
                      }
                   }
               });
@@ -318,21 +311,14 @@ public class billFragment extends Fragment implements BillOnClick{
     @Override
     public void lockOnClick(int position,String id,String bill) {
 
-        System.out.println("ooooooooooooooooooo " + bill);
-        System.out.println("qqqqqq " + test);
-        System.out.println("qqqqqqqqqqqqqqqqq " + totalBill);
         updateUserBill(position,bill);
 
             if (!test.containsKey(id)) {
-                System.out.println("kkkkkkkkkk");
                 test.put(id, bill);
                 totalBill += Double.parseDouble(bill);
-                System.out.println("!!!!!!!!!!!!1 " + totalBill);
             } else {
                 test.forEach((key, value) -> {
                     if (key.equals(id)) {
-                        System.out.println("ddddddddd");
-
                         totalBill -= Double.parseDouble(value);
                         totalBill += Double.parseDouble(bill);
                         test.replace(id,bill);
@@ -365,7 +351,6 @@ public class billFragment extends Fragment implements BillOnClick{
             billParam.put("usersBill", test);
             billStore.put("bill", billParam);
             fStore.collection("Teams").document(teamID).update(billStore);
-        System.out.println("{{{{{{{{ " + totalPriceStr);
         if(totalBill >= Double.parseDouble(totalPriceStr) && Double.parseDouble(totalPriceStr) != 0)
             bit.setVisibility(View.VISIBLE);
         else
@@ -375,7 +360,6 @@ public class billFragment extends Fragment implements BillOnClick{
     @Override
     public void addToList(int position, String id, String userBill) {
         test.put(id,userBill);
-        System.out.println("test exist = " + test);
     }
 
     private void updateUserBill(int position,String bill){

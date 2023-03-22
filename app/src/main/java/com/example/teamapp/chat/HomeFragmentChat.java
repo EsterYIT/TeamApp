@@ -79,22 +79,14 @@ public class HomeFragmentChat extends Fragment implements ConversionListener {
                    }
                    chatMessage.message=documentChange.getDocument().getString("lastMessage");
                    chatMessage.dateObject=documentChange.getDocument().getDate("timeStamp");
-                   System.out.println("message");
-                   System.out.println(chatMessage.message);
                    conversions.add(chatMessage);
                 }else if(documentChange.getType()== DocumentChange.Type.MODIFIED){
-                    System.out.println("we never got inside the for, you little poop head");
                     for (int i = 0; i < conversions.size(); i++) {
                         String senderId=documentChange.getDocument().getString("senderId");
                         String receiverId=documentChange.getDocument().getString("receiverId");
-                        System.out.println("message1");
-                        System.out.println(documentChange.getDocument().getString("lastMessage"));
-                        System.out.println(conversions.get(i).message);
                         if(conversions.get(i).senderId.equals(senderId) && conversions.get(i).receiverId.equals(receiverId)){
                             conversions.get(i).message=documentChange.getDocument().getString("lastMessage");
                             conversions.get(i).dateObject=documentChange.getDocument().getDate("timeStamp");
-                            System.out.println("message");
-                            System.out.println(conversions.get(i).message);
                             break;
                         }
                     }
@@ -105,11 +97,8 @@ public class HomeFragmentChat extends Fragment implements ConversionListener {
             binding.conversionRecyclerView.smoothScrollToPosition(0);
             binding.conversionRecyclerView.setVisibility(View.VISIBLE);
             binding.progressBar.setVisibility(View.GONE);
-            System.out.println("found recent");
         }
-        System.out.println("VALUE NULL?!");
     });
-
 
 
     private void init(){

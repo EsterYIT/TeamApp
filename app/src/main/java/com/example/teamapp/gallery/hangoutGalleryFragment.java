@@ -21,12 +21,10 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.example.teamapp.HomePage;
 import com.example.teamapp.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
-import com.google.android.gms.tasks.Tasks;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -48,12 +46,8 @@ import com.google.firebase.storage.UploadTask;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.net.URI;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
 import java.util.UUID;
 
 import javax.annotation.Nullable;
@@ -68,7 +62,10 @@ public class hangoutGalleryFragment extends Fragment {
     StorageReference storageRef;
     String name = "",teamID;
     ArrayList<Bitmap> bitmaps = new ArrayList<Bitmap>();
+    ArrayList<Bitmap> bitmaps2 = new ArrayList<Bitmap>();
+
     ArrayList<Uri> uri = new ArrayList<>();
+    ArrayList<Uri> uri1 = new ArrayList<>();
     HashMap<Object,ArrayList> usersId = new HashMap<>();
     ArrayList<String> usersImages = new ArrayList<>();
     ArrayList<String> teamMemberIds = new ArrayList<>();
@@ -146,8 +143,6 @@ public class hangoutGalleryFragment extends Fragment {
             byte[] bytes = Base64.decode(string.get(i), Base64.DEFAULT);
             bitmaped.add(BitmapFactory.decodeByteArray(bytes, 0, bytes.length));
         }
-        System.out.println("bitmapped");
-        System.out.println(bitmaped.get(0));
         return bitmaped;
     }
 
@@ -172,35 +167,55 @@ public class hangoutGalleryFragment extends Fragment {
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data){
         super.onActivityResult(requestCode, resultCode,data);
         if(requestCode == 1 && resultCode == Activity.RESULT_OK){
-            System.out.println("is there?");
-            if(data.getClipData() != null){
-                System.out.println("two pic");
+            if(data.getClipData() != null) {
                 int x = data.getClipData().getItemCount();
-                for(int i = 0; i < x; i++){
-                    try {
-                        Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContext().getContentResolver(),data.getClipData().getItemAt(i).getUri());
-                        bitmaps.add(bitmap);
-                        uri.add(data.getClipData().getItemAt(i).getUri());
-                    } catch (IOException e) {
-                        e.printStackTrace();
+                if (uri1.size() == 0){
+                    for (int i = 0; i < x; i++) {
+                        try {
+                            Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContext().getContentResolver(), data.getClipData().getItemAt(i).getUri());
+                            bitmaps.add(bitmap);
+                            uri1.add(data.getClipData().getItemAt(i).getUri());
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                        String image = encodeImage(bitmaps.get(i));
+                        usersImages.add(image);
+                        uploadedPic(uri1.get(i));
                     }
-                    // Multiple images
+                }else{
+                    for (int i = 0; i < x; i++) {
+                        try {
+                            Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContext().getContentResolver(), data.getClipData().getItemAt(i).getUri());
+                            bitmaps.add(bitmap);
+                            uri1.add(data.getClipData().getItemAt(i).getUri());
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                    for(int i = uri1.size()-1; i >= x; i--) {
+                        String image = encodeImage(bitmaps.get(i));
+                        usersImages.add(image);
+                        uploadedPic(uri1.get(i));
+                    }
                 }
             }else {
-                System.out.println("one pic");
                 try {
                     Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContext().getContentResolver(),data.getData());
-                    bitmaps.add(bitmap);
+                    bitmaps2.add(bitmap);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
                 //One image
-            }
-
-            for(int i = 0; i < uri.size();i++) {
-                String image = encodeImage(bitmaps.get(i));
-                usersImages.add(image);
-                uploadedPic(uri.get(i));
+                uri.add(data.getData());
+                if(uri.size() == 1){
+                    String image = encodeImage(bitmaps2.get(0));
+                    usersImages.add(image);
+                    uploadedPic(uri.get(0));
+                }else{
+                    String image = encodeImage(bitmaps2.get(uri.size()-1));
+                    usersImages.add(image);
+                    uploadedPic(uri.get(uri.size()-1));
+                }
             }
             addFolder();
             folderAdapter.notifyDataSetChanged();
@@ -208,7 +223,7 @@ public class hangoutGalleryFragment extends Fragment {
     }
 
     private void addFolder() {
-        System.out.println("add folder");
+
         if(folders != null){
             for(int i = 0; i < folders.size();i++){
                 if(folders.get(i).getId() == user.getUid()){
@@ -219,35 +234,14 @@ public class hangoutGalleryFragment extends Fragment {
         if(!exist || folders == null){
             Folder folder = new Folder(R.drawable.ic_folder_24, user.getUid(), name,bitmaps);
             folders.add(folder);
-                documentRef = fStore.collection("Teams").document(teamID);
+            documentRef = fStore.collection("Teams").document(teamID);
 
             images.addAll(usersImages);
             realTime.getReference("gallary/"+teamID+"/"+user.getUid()).setValue(images).addOnCompleteListener(new OnCompleteListener<Void>() {
                 @Override
                 public void onComplete(@NonNull Task<Void> task) {
-                    Toast.makeText(getContext(), "testststst", Toast.LENGTH_SHORT).show();
                 }
             });
-
-//                documentRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-//                    @Override
-//                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-//                        System.out.println("on complete");
-//                        DocumentSnapshot documentSnapshot=task.getResult();
-//                        Map<String, Object> hangoutTeam = new HashMap<String, Object>();
-//                        HashMap<Object,ArrayList> usersId = (HashMap<Object,ArrayList>)documentSnapshot.get("gallery");
-//
-//                        System.out.println(usersId);
-//                        if(usersId.containsKey(user.getUid())){
-//                            ((ArrayList)usersId.get(user.getUid())).addAll(usersImages);
-//                        }else{
-//                            usersId.put(user.getUid(),usersImages);
-//                        }
-//                        hangoutTeam.put("gallery",usersId);
-//                        documentRef.update(hangoutTeam);
-//                        folderFetcher();
-//                    }
-//                });
         }
         folderFetcher();
     }
@@ -255,8 +249,6 @@ public class hangoutGalleryFragment extends Fragment {
     public void test(){
         documentRef2 = fStore.collection("Teams").document(teamID);
         documentRef2.get().addOnSuccessListener(doc ->{
-            System.out.println("DATATATATATATA");
-            System.out.println();
             for(String key: doc.getData().keySet()){
                 System.out.println(key);
 
@@ -265,7 +257,6 @@ public class hangoutGalleryFragment extends Fragment {
     }
 
     public void folderFetcher(){
-        System.out.println("4445555555555555");
         folders = new ArrayList<>();
         documentRef2 = fStore.collection("Teams").document(teamID);
         documentRef2.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
@@ -273,32 +264,6 @@ public class hangoutGalleryFragment extends Fragment {
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                 DocumentSnapshot document = task.getResult();
                 teamMembers = (ArrayList<HashMap<String,String>>)document.get("teamMembers");
-                for (int i = 0; i < teamMembers.size(); i++) {
-                    System.out.println("123123"+teamMembers.get(i).get("userID"));
-                }
-                System.out.println("123123");
-//                List<DocumentReference> galleryReferences=new LinkedList<>();
-//                for (int i = 0; i < teamMembers.size(); i++) {
-//                    galleryReferences.add(fStore.collection("Teams").document(teamID+"/"+teamMembers.get(i).get("userID")));
-//                }
-//                List<Task<DocumentSnapshot>> tasks = new ArrayList<>();
-//                for (DocumentReference documentReference : galleryReferences) {
-//                    Task<DocumentSnapshot> documentSnapshotTask = documentReference.get();
-//                    tasks.add(documentSnapshotTask);
-//                }
-//                Tasks.whenAllSuccess(tasks).addOnSuccessListener(new OnSuccessListener<List<Object>>() {
-//                    @Override
-//                    public void onSuccess(List<Object> list) {
-//                        //Do what you need to do with your list
-//                        for (Object object : list) {
-//                            System.out.println(((DocumentSnapshot)object).getString("name"));
-//                        }
-//                    }
-//                });
-//                HashMap<String,ArrayList<String>> gallery=(HashMap<String,ArrayList<String>>)document.get("gallery");
-//                fStore.collection("Teams").document(teamID).get().addOnSuccessListener(new )
-
-//                DatabaseReference galleryRef = realTime.getReference("Galleries/"+teamID);
                 DatabaseReference galleryRef = realTime.getReference("gallary/"+teamID);
 
                 galleryRef.addValueEventListener(new ValueEventListener() {
@@ -315,12 +280,9 @@ public class hangoutGalleryFragment extends Fragment {
                         teamMemberIds = new ArrayList<>();
                         for (int i = 0; i <teamMembers.size(); i++) {
                             teamMemberIds.add(teamMembers.get(i).get("userID"));
-//                    System.out.println("THAT WAS FOUND!!!!!!! "+teamMemberIds.get(i));
                         }
                         if(gallery!=null)
                             for (String key : gallery.keySet()) {
-                                System.out.println("keys");
-                                System.out.println(key);
                                 teamMemberImages.put(key,StringsToBitmaps(gallery.get(key)));
                             }
                         fStore.collection("users").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -330,14 +292,10 @@ public class hangoutGalleryFragment extends Fragment {
                                     System.out.println(queryDocumentSnapshot.getId());
                                     if (teamMemberIds.contains(queryDocumentSnapshot.getId())) {
                                         teamMemberNames.put(queryDocumentSnapshot.getId(),queryDocumentSnapshot.getString("username"));
-//                                System.out.println("name was found");
-//                                System.out.println(queryDocumentSnapshot.getString("username"));
                                     }
                                 }
-                                System.out.println("baklava");
                                 folders = new ArrayList<>();
                                 for (String key : teamMemberImages.keySet()) {
-                                    System.out.println("lo baklava");
                                     Folder folder = new Folder(R.drawable.ic_folder_24, key, teamMemberNames.get(key),teamMemberImages.get(key));
                                     folders.add(folder);
                                     folderAdapter.notifyDataSetChanged();

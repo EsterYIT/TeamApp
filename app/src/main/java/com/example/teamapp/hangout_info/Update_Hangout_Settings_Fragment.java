@@ -129,6 +129,7 @@ public class Update_Hangout_Settings_Fragment extends Fragment {
         update.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                System.out.println("ffffffffffffff " + date);
                 FirebaseFirestore fStore = FirebaseFirestore.getInstance();
                 documentReference = fStore.collection("Teams").document(teamId);
                 documentReference.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
@@ -151,8 +152,8 @@ public class Update_Hangout_Settings_Fragment extends Fragment {
                             documentReference.update("tabs",tabs);
 
                         Toast.makeText(getContext(), "Settings updated", Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(getActivity(), HomePage.class);
-                        startActivity(intent);
+                            Intent intent = new Intent(getActivity(), HomePage.class);
+                            startActivity(intent);
                     }
                 });
                 SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");

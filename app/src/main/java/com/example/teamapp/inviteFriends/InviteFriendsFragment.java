@@ -68,7 +68,6 @@ public class InviteFriendsFragment extends Fragment implements inviteInterface {
 
         recyclerView = v.findViewById(R.id.inviteRecycler);
         search = v.findViewById(R.id.search);
-     //   back = v.findViewById(R.id.backFromSearch);
         auth = FirebaseAuth.getInstance();
         fStore = FirebaseFirestore.getInstance();
 
@@ -99,14 +98,6 @@ public class InviteFriendsFragment extends Fragment implements inviteInterface {
                 filter(editable.toString());
             }
         });
-
-//        back.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent intent = new Intent(getContext(), HomePage.class);
-//                startActivity(intent);
-//            }
-//        });
 
         documentRef = fStore.collection("Teams").document(teamID);
         documentRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {

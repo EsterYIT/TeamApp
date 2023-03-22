@@ -47,9 +47,6 @@ public class FolderAdapter extends RecyclerView.Adapter<FolderAdapter.ViewHolder
             Folder f = folders.get(position);
             holder.folder.setImageResource(f.getImageView());
             holder.username.setText(f.getName());
-            System.out.println("names");
-            System.out.println(f.getName());
-
     }
 
     @Override
@@ -70,10 +67,8 @@ public class FolderAdapter extends RecyclerView.Adapter<FolderAdapter.ViewHolder
             folder.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-//                    adapter.setUriArrayList(folder[ids[getAdapterPosition()]]);
-
                     ((hangOutTeamAct)context).getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainerView5,
-                            new galleryFragment(new GalleryAdapter(context,folders.get(getAdapterPosition()).bitmaps))).addToBackStack(null).commit();
+                            new galleryFragment(new GalleryAdapter(context,folders.get(0).bitmaps))).addToBackStack(null).commit();
                 }
             });
         }

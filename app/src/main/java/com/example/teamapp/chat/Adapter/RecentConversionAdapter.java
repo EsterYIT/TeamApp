@@ -19,11 +19,11 @@ import java.util.List;
 public class RecentConversionAdapter extends RecyclerView.Adapter<RecentConversionAdapter.ConversionViewHolder>{
 
     private final List<ChatMessage> chatMessages;
-    private final ConversionListener conversionListner;
+    private final ConversionListener conversionListener;
 
-    public RecentConversionAdapter(List<ChatMessage> chatMessages, ConversionListener conversionListner) {
+    public RecentConversionAdapter(List<ChatMessage> chatMessages, ConversionListener conversionListener) {
         this.chatMessages = chatMessages;
-        this.conversionListner=conversionListner;
+        this.conversionListener=conversionListener;
     }
 
     @NonNull
@@ -66,7 +66,7 @@ public class RecentConversionAdapter extends RecyclerView.Adapter<RecentConversi
                 user.setId(chatMessage.conversionId);
                 user.setUsername(chatMessage.conversionName);
                 user.setUserImage(chatMessage.conversionImage);
-                conversionListner.onConversionClicked(user);
+                conversionListener.onConversionClicked(user);
             });
         }
     }

@@ -54,12 +54,10 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder
         holder.tvName.setText(model.getName1());
         holder.tvNumber.setText(model.getNumber());
         holder.userImage.setImageBitmap(bitmap);
-       // holder.addCon.setImageResource(R.drawable.ic_add_person_24);
 
         if(contactNumberExist(activity,model.getNumber())){
             holder.addCon.setVisibility(View.GONE);
         }
-
     }
 
     @Override

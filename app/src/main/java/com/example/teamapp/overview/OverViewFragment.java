@@ -81,7 +81,6 @@ public class OverViewFragment extends Fragment implements PopupMenu.OnMenuItemCl
     String name;
     AlertDialog dialog;
     AlertDialog.Builder builder;
-    //User thisUser;
 
 
     @Override

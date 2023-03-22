@@ -1,7 +1,5 @@
 package com.example.teamapp.addContact;
 
-import android.widget.ImageView;
-
 public class ContactModel {
 
     private String name1,number,image,id;
