@@ -13,7 +13,7 @@ At the moment the infrastructure is focused on a template for a hangout group on
 ### Firebase DB
 
 * Firebase Authentication - Handles any process that requires authentication and maintains required permissions for each process.
-* Firebase Store - Handles any process that requires immediate updating such as registration, group settings, group creationץ
+* Firebase Store - Handles any process that requires immediate updating such as registration, group settings, group creation.
 * Firebase Storage - Handles any process that requires storage such as a photo album.
 
 
