@@ -1,4 +1,4 @@
-# TeamApp Final Project
+# TeamApp Project
 
 ### This application was presented as a final project during practical software engineer studies
 ***
