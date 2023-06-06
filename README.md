@@ -1,6 +1,6 @@
 # TeamApp Final Project
 
-### This application was made as a final project during my studies in software practical engineer
+### This application was presented as a final project during practical software engineer studies
 ***
 ### About
 This application is used as an infrastructure for managing interest groups, which aims to solve problems related to disorder and organization.
